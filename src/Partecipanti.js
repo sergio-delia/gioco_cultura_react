@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import { GiocatoriProvider, useGiocatori } from './GiocatoriContext';
+import React, { useState } from "react";
+import { GiocatoriProvider, useGiocatori } from "./GiocatoriContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function Partecipanti() {
-  const [nome, setNome] = useState('');
+
+  const navigate = useNavigate();
+  const [nome, setNome] = useState("");
   const [punteggio, setPunteggio] = useState(0);
+
   const { giocatori, aggiungiGiocatore } = useGiocatori();
 
   const handleAggiungiGiocatore = () => {
-    if (nome.trim() !== '') {
-      aggiungiGiocatore(nome, punteggio);
-      setNome('');
+    if (nome.trim() !== "") {
+      let giocatore_aggiunto = aggiungiGiocatore(nome, punteggio);
+      if (!giocatore_aggiunto) {
+        toast.error("Impossibile aggiungere 2 giocatori con lo stesso nome", {
+          position: "bottom-center",
+        });
+      }
+      setNome("");
       setPunteggio(0);
     }
+    console.log(giocatori.length);
   };
+
+
+  const navigateToStart = () => {
+    navigate('/play')
+  }
 
   return (
     <div>
@@ -23,14 +40,8 @@ function Partecipanti() {
         value={nome}
         onChange={(e) => setNome(e.target.value)}
       />
-      <input
-        type="number"
-        placeholder="Punteggio"
-        value={punteggio}
-        onChange={(e) => setPunteggio(Number(e.target.value))}
-      />
       <button onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</button>
-      
+
       <h2>Lista dei Giocatori:</h2>
       <ul>
         {giocatori.map((giocatore, index) => (
@@ -39,6 +50,8 @@ function Partecipanti() {
           </li>
         ))}
       </ul>
+      <button disabled={giocatori.length < 2} onClick={navigateToStart}>Avvia gioco</button>
+      <ToastContainer />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react"
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
-function Partecipanti2() {
+function Partecipanti_manual() {
   const [n_partecipanti, setNPartecipanti] = useState(2);
   const elementi = []
   const renderList = () => {
@@ -34,4 +34,4 @@ function Partecipanti2() {
   )
 }
 
-export default Partecipanti2
+export default Partecipanti_manual

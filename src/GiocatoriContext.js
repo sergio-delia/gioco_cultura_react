@@ -5,17 +5,30 @@ const GiocatoriContext = createContext();
 
 // Crea un componente Provider per il contesto
 export function GiocatoriProvider({ children, numGiocatori }) {
+  
   const [giocatori, setGiocatori] = useState([]);
 
   // Funzione per aggiungere un giocatore
   const aggiungiGiocatore = (nome, punteggio) => {
-    setGiocatori([...giocatori, { nome, punteggio }]);
+    const found = giocatori.some(giocatore => giocatore.nome == nome);
+    if(found){
+      return false;
+    }
+    setGiocatori([...giocatori, {id: giocatori.length , nome, punteggio }]);
+    return true;
   };
 
-  // Altri metodi per aggiornare i dati dei giocatori, se necessario
+  const aggiungiPunteggio = (id, punteggioDaAumentare) => {
+    const updatedPlayers = giocatori.map((player) =>
+    player.id === id ? { ...player, punteggio: player.punteggio + 1 } : player
+  );
+  setGiocatori(updatedPlayers);
+
+
+  }
 
   return (
-    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore }}>
+    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore, aggiungiPunteggio }}>
       {children}
     </GiocatoriContext.Provider>
   );
