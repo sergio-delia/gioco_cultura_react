@@ -18,17 +18,23 @@ export function GiocatoriProvider({ children, numGiocatori }) {
     return true;
   };
 
-  const aggiungiPunteggio = (id, punteggioDaAumentare) => {
+  const aggiungiPunteggio = (id, punteggioDaAumentare = 1) => {
     const updatedPlayers = giocatori.map((player) =>
-    player.id === id ? { ...player, punteggio: player.punteggio + 1 } : player
+    player.id === id ? { ...player, punteggio: player.punteggio + punteggioDaAumentare } : player
   );
   setGiocatori(updatedPlayers);
-
-
   }
 
+  const sottraiPunteggio = (id, punteggioDaDiminuire = 1) => {
+    const updatedPlayers = giocatori.map((player) =>
+    player.id === id ? { ...player, punteggio: player.punteggio - punteggioDaDiminuire } : player
+  );
+  setGiocatori(updatedPlayers);
+  }
+
+
   return (
-    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore, aggiungiPunteggio }}>
+    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore, aggiungiPunteggio, sottraiPunteggio }}>
       {children}
     </GiocatoriContext.Provider>
   );
