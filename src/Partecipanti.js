@@ -3,6 +3,7 @@ import { GiocatoriProvider, useGiocatori } from "./GiocatoriContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Button, Container, FloatingLabel, Form, ListGroup } from "react-bootstrap";
 
 function Partecipanti() {
 
@@ -32,27 +33,30 @@ function Partecipanti() {
   }
 
   return (
-    <div>
-      <h1>Partecipanti</h1>
-      <input
-        type="text"
-        placeholder="Nome del giocatore"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-      />
-      <button onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</button>
+    <Container>
+      <h1 className="mb-3 mt-3">Partecipanti</h1>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Aggiungi giocatore"
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Sergio" value={nome}
+        onChange={(e) => setNome(e.target.value)}/>
+      </FloatingLabel>
+ 
+      <Button className="mb-5" onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</Button>
 
-      <h2>Lista dei Giocatori:</h2>
-      <ul>
+      <h2 className="mb-3 mb-3">Lista dei Giocatori:</h2>
+      <ListGroup className="mb-3" style={{textAlign:'center'}}>
         {giocatori.map((giocatore, index) => (
-          <li key={index}>
+          <ListGroup.Item key={index}>
             {giocatore.nome} - Punteggio: {giocatore.punteggio}
-          </li>
+          </ListGroup.Item>
         ))}
-      </ul>
-      <button disabled={giocatori.length < 2} onClick={navigateToStart}>Avvia gioco</button>
+      </ListGroup>
+      <Button disabled={giocatori.length < 2} onClick={navigateToStart}>Avvia gioco</Button>
       <ToastContainer />
-    </div>
+    </Container>
   );
 }
 

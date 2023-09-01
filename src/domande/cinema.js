@@ -1,0 +1,22 @@
+export const cinema = [
+    {domanda: 'Qual è il film che ha vinto l\'Oscar come Miglior Film nel 1994 e presenta personaggi come Forrest Gump e Jenny Curran?', risposta: 'Forrest Gump'},
+    {domanda: 'Chi ha diretto il film "Il Padrino"?', risposta: 'Francis Ford Coppola'},
+    {domanda: 'In quale film del 1985 un giovane Michael J. Fox interpreta un adolescente viaggiatore nel tempo?', risposta: 'Ritorno al futuro'},
+    {domanda: 'Chi è stato l\'attore che ha interpretato il personaggio di James Bond nel film "Skyfall" del 2012?', risposta: 'Daniel Craig'},
+    {domanda: 'Qual è il nome del regista di "Pulp Fiction" e "Kill Bill"?', risposta: 'Quentin Tarantino'},
+    {domanda: 'In quale film del 1977 il personaggio Luke Skywalker affronta Darth Vader per la prima volta?', risposta: 'Guerre stellari (Star Wars: Episode IV - A New Hope)'},
+    {domanda: 'Qual è il nome del robot animato protagonista del film d\'animazione Pixar del 2008?', risposta: 'Wall-E'},
+    {domanda: 'Qual è il film del 1990 diretto da Martin Scorsese e interpretato da Robert De Niro come un gangster?', risposta: 'Quei bravi ragazzi (Goodfellas)'},
+    {domanda: 'In quale film del 1993 Steven Spielberg porta i dinosauri sulla terra grazie alla tecnologia CGI?', risposta: 'Jurassic Park'},
+    {domanda: 'Chi è stato l\'attore protagonista del film "Il Gladiatore" del 2000, diretto da Ridley Scott?', risposta: 'Russell Crowe'},
+    {domanda: 'Qual è il titolo del film del 2008 diretto da Christopher Nolan, noto per la sua trama intricata sul viaggio nel tempo?', risposta: 'Inception'},
+    {domanda: 'Chi ha vinto l\'Oscar come Miglior Attore per il suo ruolo in "The Revenant" del 2015?', risposta: 'Leonardo DiCaprio'},
+    {domanda: 'Quale regista è noto per il suo lavoro su "The Dark Knight Trilogy" e "Inception"?', risposta: 'Christopher Nolan'},
+    {domanda: 'Qual è il film del 2003 basato su una storia vera che segue la vita di un giovane indiano chiamato Jamal Malik?', risposta: 'Slumdog Millionaire'},
+    {domanda: 'Qual è il film del 2010 diretto da David Fincher, basato su un romanzo di Mark Zuckerberg e la creazione di Facebook?', risposta: 'The Social Network'},
+    {domanda: 'Chi ha diretto il film d\'animazione "Frozen" del 2013?', risposta: 'Chris Buck e Jennifer Lee'},
+    {domanda: 'Qual è il titolo del film del 2019 che ha vinto l\'Oscar come Miglior Film Straniero e Miglior Regista per Bong Joon-ho?', risposta: 'Parasite'},
+    {domanda: 'In quale film del 2014 Matthew McConaughey interpreta un astronauta alla ricerca di un nuovo pianeta per l\'umanità?', risposta: 'Interstellar'},
+    {domanda: 'Qual è il film del 2017 diretto da Jordan Peele, noto per il suo commento sociale e l\'horror psicologico?', risposta: 'Get Out'},
+    {domanda: 'Chi ha interpretato il personaggio di Iron Man/Tony Stark nell\'Universo Cinematografico Marvel?', risposta: 'Robert Downey Jr.'}
+    ]

@@ -1,3 +1,4 @@
+import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useGiocatori } from "./GiocatoriContext"
 
 import { ToastContainer, toast } from "react-toastify";
@@ -22,18 +23,25 @@ function Punteggio() {
     }
 
   return (
-    <div>
-        <button onClick={funzione}>Add2</button>
-        <ul>
+    <Container>
+        <ListGroup style={{textAlign:'center'}}>
             {giocatori.map((giocatore) => (
-                <li key={giocatore.id}>{giocatore.nome} : {giocatore.punteggio}
-                <button onClick={() => aggiungiPunteggio(giocatore.id)}>Add</button>
-                <button onClick={() => sottrai(giocatore)}>Subtract</button>
-                </li>
+                <ListGroup.Item key={giocatore.id}>
+                <Row style={{maxWidth: '1000px', margin: '0 auto'}}>
+                    <Col xs={3}>{giocatore.nome}</Col>
+                    <Col xs={3}>{giocatore.punteggio}</Col>
+                    <Col>
+                        <Row>
+                            <Col xs={3}><Button variant="success" onClick={() => aggiungiPunteggio(giocatore.id)}>Add</Button></Col>    
+                            <Col xs={3}><Button variant="warning" onClick={() => sottrai(giocatore)}>Subtract</Button></Col>    
+                        </Row>
+                    </Col>
+                </Row>
+                </ListGroup.Item>
             ))}
-        </ul>
+        </ListGroup>
         <ToastContainer />
-    </div>
+    </Container>
   )
 }
 

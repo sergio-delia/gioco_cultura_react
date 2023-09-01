@@ -1,17 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
 
-const Card = ({ card, onClick }) => {
+const Card = ({ card }) => {
   return (
-    <motion.div
-      className="card"
-      onClick={onClick}
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      {card}
-    </motion.div>
+    <div className="card">
+      <img src={`images/${card}.png`} alt={card} />
+    </div>
   );
 };
 
