@@ -23,7 +23,7 @@ function Punteggio() {
     }
 
   return (
-    <Container>
+    <Container className="mt-3">
         <ListGroup style={{textAlign:'center'}}>
             {giocatori.map((giocatore) => (
                 <ListGroup.Item key={giocatore.id}>
@@ -32,8 +32,8 @@ function Punteggio() {
                     <Col xs={3}>{giocatore.punteggio}</Col>
                     <Col>
                         <Row>
-                            <Col xs={3}><Button variant="success" onClick={() => aggiungiPunteggio(giocatore.id)}>Add</Button></Col>    
-                            <Col xs={3}><Button variant="warning" onClick={() => sottrai(giocatore)}>Subtract</Button></Col>    
+                            <Col xs={6}><Button variant="success" onClick={() => aggiungiPunteggio(giocatore.id)}>Add</Button></Col>    
+                            <Col xs={6}><Button variant="warning" onClick={() => sottrai(giocatore)}>Subtract</Button></Col>    
                         </Row>
                     </Col>
                 </Row>
