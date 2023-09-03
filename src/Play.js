@@ -50,6 +50,7 @@ function Play() {
         storia: storia[[Math.floor(Math.random() * storia.length)]],
     })
     stopProgressBar()
+    setDomandeModal([])
    
   };
 
@@ -71,9 +72,10 @@ const [progress, setProgress] = useState(0);
 
 
   const startProgressBar = () => {
+    stopProgressBar()
     setNumDomandeRimanenti(Object.keys(listaDomande2).length)
     setIsRunning(true);
-  
+    
     keysRef.current = Object.keys(listaDomande2);
     const updatedListaDomande = { ...listaDomande2 };
 
@@ -93,7 +95,15 @@ const [progress, setProgress] = useState(0);
           const randomKey = keys[Math.floor(Math.random() * keys.length)];
           console.log(randomKey);
           console.log(updatedListaDomande);
-          setDomandeModal([...domandeModal, {id:domandeModal.length ,domanda: updatedListaDomande[randomKey].domanda, risposta: updatedListaDomande[randomKey].risposta}])
+          const updatedDomande = { ...updatedListaDomande };
+          setDomandeModal((oldArray) => [
+            ...oldArray,
+            {
+              id: oldArray.length,
+              domanda: updatedDomande[randomKey].domanda,
+              risposta: updatedDomande[randomKey].risposta
+            }
+          ]);
           delete updatedListaDomande[randomKey];
           setlistaDomande2(updatedListaDomande);
           var ind = keys.indexOf(randomKey); 
@@ -115,6 +125,10 @@ const [progress, setProgress] = useState(0);
     setIntervalId(newIntervalId);
   };
 
+  useEffect(() => {
+    console.log(domandeModal);
+  }, [domandeModal])
+  
 
 
   useEffect(() => {

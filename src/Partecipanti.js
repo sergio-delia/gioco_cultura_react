@@ -24,9 +24,12 @@ function Partecipanti() {
       setNome("");
       setPunteggio(0);
     }
-    console.log(giocatori.length);
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    handleAggiungiGiocatore()
+  }
 
   const navigateToStart = () => {
     navigate('/play')
@@ -35,16 +38,19 @@ function Partecipanti() {
   return (
     <Container>
       <h1 className="mb-3 mt-3">Partecipanti</h1>
+      <Form onSubmit={(e) => handleFormSubmit(e)}>
+
       <FloatingLabel
         controlId="floatingInput"
         label="Aggiungi giocatore"
         className="mb-3"
-      >
+        >
         <Form.Control type="text" placeholder="Sergio" value={nome}
-        onChange={(e) => setNome(e.target.value)}/>
+        onChange={(e) => setNome(e.target.value)} />
       </FloatingLabel>
  
-      <Button className="mb-5" onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</Button>
+      <Button type="submit" className="mb-5" onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</Button>
+      </Form>
 
       <h2 className="mb-3 mb-3">Lista dei Giocatori:</h2>
       <ListGroup className="mb-3" style={{textAlign:'center'}}>

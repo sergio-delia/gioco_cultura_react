@@ -15,13 +15,13 @@ function AllAnswerModal({domandeModal}) {
     <>
     <Container>
 
-          <Button variant="primary" onClick={handleShow}>
+          <Button disabled={domandeModal.length < 1} variant="primary" onClick={handleShow}>
         Scopri le risposte delle domande sparite
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Cercavi qualcosa?</Modal.Title>
+          <Modal.Title>E vedi di imparare qualcosa!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         
@@ -43,7 +43,7 @@ function AllAnswerModal({domandeModal}) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Chiudi
           </Button>
         </Modal.Footer>
       </Modal>
