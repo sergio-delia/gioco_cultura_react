@@ -12,6 +12,7 @@ import AllAnswerModal from "./AllAnswerModal";
 
 
 function Play() {
+
   const { giocatori } = useGiocatori();
   const navigate = useNavigate();
 
@@ -23,7 +24,6 @@ function Play() {
   })
 
   const [domandeModal, setDomandeModal] = useState([])
-  const [listaDomande, setlistaDomande] = useState([])
 
   const [flipAll, setFlipAll] = useState(false)
 
@@ -33,10 +33,7 @@ function Play() {
     }
   }, []);
 
-  
-  const avviaGioco = () => {
-    setlistaDomande([sport[[Math.floor(Math.random() * sport.length)]]])
-  };
+
 
 
 
@@ -124,17 +121,6 @@ const [progress, setProgress] = useState(0);
   
     setIntervalId(newIntervalId);
   };
-
-  useEffect(() => {
-    console.log(domandeModal);
-  }, [domandeModal])
-  
-
-
-  useEffect(() => {
-    console.log(listaDomande2);
-  
-  }, [listaDomande2])
   
 
   const stopProgressBar = () => {
@@ -168,7 +154,7 @@ const [progress, setProgress] = useState(0);
 
 
         <div className="d-grid gap-2">
-        <Button className="mb-3 mt-5" onClick={avviaGioco2} size="lg">Nuove domande2</Button>
+        <Button className="mb-3 mt-5" variant="success" onClick={avviaGioco2} size="lg">Nuove domande</Button>
         </div>
 
 
@@ -182,58 +168,13 @@ const [progress, setProgress] = useState(0);
         : <Col></Col>
         }
         <ProgressBar now={progress} label={`${progress}%`} />
-        <Button onClick={startProgressBar}>
+        
+        <Button variant="primary" className="mt-3 mb-3 me-1" onClick={startProgressBar}>
         Start
       </Button>
-      <Button onClick={stopProgressBar} disabled={!isRunning}>
+      <Button variant="danger" className="mt-3 mb-3 ms-1" onClick={stopProgressBar} disabled={!isRunning}>
         Ferma
       </Button>
-
-        <div className="d-grid gap-2">
-        <Button onClick={avviaGioco} size="lg">Nuove domande</Button>
-        </div>
-        <Row>
-        {listaDomande ? 
-            listaDomande.map(domanda => 
-                <Col>
-            <FlippingCard
-              frontContent={domanda.domanda}
-              backContent={domanda.risposta}
-            />                
-                </Col>
-                )
-            
-                    : 
-            <Col></Col>
-        }
-        </Row>
-
-        <Row>
-          <Col sm={6} md={3}>
-            <FlippingCard
-              frontContent="Front of Card 1"
-              backContent="Back of Card 1"
-            />
-          </Col>
-          <Col sm={6} md={3}>
-            <FlippingCard
-              frontContent="Front of Card 1"
-              backContent="Back of Card 1"
-            />
-          </Col>
-          <Col sm={6} md={3}>
-            <FlippingCard
-              frontContent="Front of Card 2"
-              backContent="Back of Card 2"
-            />
-          </Col>
-          <Col sm={6} md={3}>
-            <FlippingCard
-              frontContent="Front of Card 2"
-              backContent="Back of Card 2"
-            />
-          </Col>
-        </Row>
         
         <AllAnswerModal domandeModal={domandeModal} />
       </Container>

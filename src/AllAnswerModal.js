@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Badge, Button, Container, ListGroup, Modal } from 'react-bootstrap'
+import { Badge, Button, Container, ListGroup, Modal, Row } from 'react-bootstrap'
 
 function AllAnswerModal({domandeModal}) {
 
@@ -15,7 +15,9 @@ function AllAnswerModal({domandeModal}) {
     <>
     <Container>
 
-          <Button disabled={domandeModal.length < 1} variant="primary" onClick={handleShow}>
+      <Row>
+
+          <Button style={{width:'auto'}} disabled={domandeModal.length < 1} variant="secondary" onClick={handleShow}>
         Scopri le risposte delle domande sparite
       </Button>
 
@@ -32,7 +34,7 @@ function AllAnswerModal({domandeModal}) {
         <ListGroup.Item
         as="li"
         className="d-flex justify-content-between align-items-start" key={domanda.id}
-      >
+        >
         <div className="ms-2 me-auto">
           <div className="fw-bold">{domanda.domanda}</div>
           {domanda.risposta}
@@ -47,7 +49,8 @@ function AllAnswerModal({domandeModal}) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+        </Row>
+        </Container>
     </>
   )
 }
