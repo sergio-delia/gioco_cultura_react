@@ -3,7 +3,8 @@ import { GiocatoriProvider, useGiocatori } from "./GiocatoriContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, FloatingLabel, Form, ListGroup } from "react-bootstrap";
+import { Button, Col, Container, FloatingLabel, Form, ListGroup, Row } from "react-bootstrap";
+import { FaTrash } from "react-icons/fa6";
 
 function Partecipanti() {
 
@@ -11,7 +12,7 @@ function Partecipanti() {
   const [nome, setNome] = useState("");
   const [punteggio, setPunteggio] = useState(0);
 
-  const { giocatori, aggiungiGiocatore } = useGiocatori();
+  const { giocatori, aggiungiGiocatore, cancellaGiocatore } = useGiocatori();
 
   const handleAggiungiGiocatore = () => {
     if (nome.trim() !== "") {
@@ -35,6 +36,16 @@ function Partecipanti() {
     navigate('/play')
   }
 
+  const handleSetName = (playerName) => {
+    if(playerName.length > 8){
+      toast.error("Hai superato il massimo di caratteri consentito", {
+        position: "bottom-center",
+      }) 
+      } else {
+        setNome(playerName)
+      }
+    }
+
   return (
     <Container>
       <h1 className="mb-3 mt-3">Partecipanti</h1>
@@ -42,25 +53,29 @@ function Partecipanti() {
 
       <FloatingLabel
         controlId="floatingInput"
-        label="Aggiungi giocatore"
+        label="Aggiungi giocatore (max 8 ch.)"
         className="mb-3"
         >
         <Form.Control type="text" placeholder="Sergio" value={nome}
-        onChange={(e) => setNome(e.target.value)} />
+        onChange={(e) => handleSetName(e.target.value)} />
       </FloatingLabel>
  
-      <Button type="submit" className="mb-5" onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</Button>
+      <Button disabled={!nome} type="submit" className="mb-5" onClick={handleAggiungiGiocatore}>Aggiungi Giocatore</Button>
       </Form>
-
+      
       <h2 className="mb-3 mb-3">Lista dei Giocatori:</h2>
       <ListGroup className="mb-3" style={{textAlign:'center'}}>
         {giocatori.map((giocatore, index) => (
           <ListGroup.Item key={index}>
-            {giocatore.nome} - Punteggio: {giocatore.punteggio}
+            <Row>
+            <Col><div className="mt-1">{giocatore.nome}</div></Col>
+            <Col><div className="mt-1">{giocatore.punteggio}</div></Col>
+            <Col><Button className="ms-5" variant="warning" onClick={()=> cancellaGiocatore(giocatore.id)}><FaTrash /></Button></Col>
+            </Row>
           </ListGroup.Item>
         ))}
       </ListGroup>
-      <Button disabled={giocatori.length < 2} onClick={navigateToStart}>Avvia gioco</Button>
+      <Button variant="success" disabled={giocatori.length < 2} onClick={navigateToStart}>Avvia gioco</Button>
       <ToastContainer />
     </Container>
   );

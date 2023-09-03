@@ -14,7 +14,7 @@ export function GiocatoriProvider({ children, numGiocatori }) {
     if(found){
       return false;
     }
-    setGiocatori([...giocatori, {id: giocatori.length , nome, punteggio }]);
+    setGiocatori([...giocatori, {id: new Date().getTime() , nome, punteggio }]);
     return true;
   };
 
@@ -32,9 +32,14 @@ export function GiocatoriProvider({ children, numGiocatori }) {
   setGiocatori(updatedPlayers);
   }
 
+  const cancellaGiocatore = (id) => {
+    const newPlayers = giocatori.filter(giocatore => giocatore.id !== id)
+    setGiocatori(newPlayers)
+  }
+
 
   return (
-    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore, aggiungiPunteggio, sottraiPunteggio }}>
+    <GiocatoriContext.Provider value={{ giocatori, aggiungiGiocatore, aggiungiPunteggio, sottraiPunteggio, cancellaGiocatore }}>
       {children}
     </GiocatoriContext.Provider>
   );

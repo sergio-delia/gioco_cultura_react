@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { Badge, Button, Container, ListGroup, Modal, Row } from 'react-bootstrap'
+import { Button, Container, ListGroup, Modal, Row } from 'react-bootstrap'
 
-function AllAnswerModal({domandeModal}) {
+function AllAnswerModal({domandeModal, show, setShow}) {
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => {
-        console.log(domandeModal);
-        setShow(true)};
-
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    console.log(domandeModal);
+    setShow(true)
+  };
 
   return (
     <>

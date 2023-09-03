@@ -17,10 +17,7 @@ function Play() {
   const navigate = useNavigate();
 
   const [listaDomande2, setlistaDomande2] = useState({
-    sport:{},
-    cinema:{},
-    arte:{},
-    storia:{}
+
   })
 
   const [domandeModal, setDomandeModal] = useState([])
@@ -28,6 +25,7 @@ function Play() {
   const [flipAll, setFlipAll] = useState(false)
 
   useEffect(() => {
+    console.log(numDomandeRimanenti);
     if (giocatori.length < 2) {
       navigate("/partecipanti");
     }
@@ -41,16 +39,20 @@ function Play() {
   const avviaGioco2 = () => {
     toggleFlipAll()
     setlistaDomande2({
-        sport:sport[[Math.floor(Math.random() * sport.length)]],
-        cinema: cinema[[Math.floor(Math.random() * cinema.length)]],
-        arte: arte[[Math.floor(Math.random() * arte.length)]],
-        storia: storia[[Math.floor(Math.random() * storia.length)]],
+      sport:sport[[Math.floor(Math.random() * sport.length)]],
+      cinema: cinema[[Math.floor(Math.random() * cinema.length)]],
+      arte: arte[[Math.floor(Math.random() * arte.length)]],
+      storia: storia[[Math.floor(Math.random() * storia.length)]],
     })
+    
     stopProgressBar()
     setDomandeModal([])
    
   };
 
+  useEffect(() => {
+    setNumDomandeRimanenti(Object.keys(listaDomande2).length)
+  }, [listaDomande2])
   
 
   const toggleFlipAll = () => {
@@ -70,7 +72,6 @@ const [progress, setProgress] = useState(0);
 
   const startProgressBar = () => {
     stopProgressBar()
-    setNumDomandeRimanenti(Object.keys(listaDomande2).length)
     setIsRunning(true);
     
     keysRef.current = Object.keys(listaDomande2);
@@ -85,8 +86,8 @@ const [progress, setProgress] = useState(0);
         //   clearInterval(newIntervalId); // Ferma l'intervallo se non è più in esecuzione
         //   return prevProgress;
         // }
-        if (prevProgress < 100) {
-          return prevProgress + 10; // Aumenta di 10 ogni 10 secondi
+        if (prevProgress < 10) {
+          return prevProgress + 1; // Aumenta di 10 ogni 10 secondi
         } else if (keys.length > 1) {
           console.log(keys);
           const randomKey = keys[Math.floor(Math.random() * keys.length)];
@@ -110,10 +111,10 @@ const [progress, setProgress] = useState(0);
         } else {
           setNumDomandeRimanenti(Object.keys(updatedListaDomande).length); // Aggiorna il numero di domande rimanenti
           if (numDomandeRimanenti > 1) {
-            return 100; // Riavvia la progress bar dopo aver raggiunto il 100%
+            return 10; // Riavvia la progress bar dopo aver raggiunto il 100%
           } else {
             setIsRunning(false); // Ferma la progress bar
-            return 100;
+            return 10;
           }
         }
       });
@@ -145,7 +146,17 @@ const [progress, setProgress] = useState(0);
   }, [intervalId]);
 
 
+/* MODAL ------------------------------------------------------------------------ */
 
+
+const [show, setShow] = useState(false);
+
+useEffect(() => {
+  if(show){
+    stopProgressBar();
+  }
+
+}, [show])
 
   return (
     <>
@@ -167,16 +178,16 @@ const [progress, setProgress] = useState(0);
         </Row>
         : <Col></Col>
         }
-        <ProgressBar now={progress} label={`${progress}%`} />
+        <ProgressBar max={10} now={progress} label={`${progress}`} />
         
-        <Button variant="primary" className="mt-3 mb-3 me-1" onClick={startProgressBar}>
+        <Button disabled={numDomandeRimanenti < 2 || isRunning} variant="primary" className="mt-3 mb-3 me-1" onClick={startProgressBar}>
         Start
       </Button>
       <Button variant="danger" className="mt-3 mb-3 ms-1" onClick={stopProgressBar} disabled={!isRunning}>
         Ferma
       </Button>
         
-        <AllAnswerModal domandeModal={domandeModal} />
+        <AllAnswerModal show={show} setShow={setShow} domandeModal={domandeModal} />
       </Container>
     </>
   );
