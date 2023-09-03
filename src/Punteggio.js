@@ -8,9 +8,6 @@ function Punteggio() {
 
     const { giocatori, aggiungiPunteggio, sottraiPunteggio } = useGiocatori()
 
-    const funzione = () => {
-        console.log(giocatori);
-    }
 
     const sottrai = (giocatore, punteggioDaDiminuire = 1) => {
         if((giocatore.punteggio - punteggioDaDiminuire)  >= 0){
