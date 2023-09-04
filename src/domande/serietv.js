@@ -1,4 +1,4 @@
-export const serie = [
+export const serietv = [
 {domanda: 'Qual è il nome della famiglia protagonista de I Simpson?', risposta: 'Simpson'},
 {domanda: 'Chi è l\'attore protagonista di Breaking Bad?', risposta: 'Bryan Cranston'},
 {domanda: 'Quale serie televisiva parla delle avventure di un gruppo di amici nel loro bar preferito?', risposta: 'How I Met Your Mother'},

@@ -1,4 +1,4 @@
-export const scienza = [
+export const scienze = [
     {domanda: 'Quale è l\'elemento chimico più abbondante nel corpo umano?', risposta: 'Ossigeno'},
     {domanda: 'Quale fenomeno scientifico causa la formazione di un arcobaleno?', risposta: 'Rifrazione della luce'},
     {domanda: 'Quale è l\'unità di misura della temperatura?', risposta: 'Celsius'},

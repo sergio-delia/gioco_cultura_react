@@ -4,17 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaRegSquareCheck, FaRegSquareFull } from "react-icons/fa6";
 
-function Categorie() {
-  const [categorie, setCategorie] = useState({
-    storia: true,
-    cinema: true,
-    arte: true,
-    sport: true,
-    geografia: false,
-    serietv: false,
-    scienze: false,
-    cultura: false,
-  });
+function Categorie({categorie, setCategorie}) {
+
 
   const handleScegliCategoria = (categoria) => {
     const nuoveCategorie = { ...categorie };
