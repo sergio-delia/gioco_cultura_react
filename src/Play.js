@@ -9,6 +9,7 @@ import { cinema } from "./domande/cinema";
 import { arte } from "./domande/arte";
 import { storia } from "./domande/storia";
 import AllAnswerModal from "./AllAnswerModal";
+import Categorie from "./Categorie";
 
 
 function Play() {
@@ -162,7 +163,7 @@ useEffect(() => {
     <>
       <Container>
         <Punteggio />
-
+        <Categorie />
 
         <div className="d-grid gap-2">
         <Button className="mb-3 mt-5" variant="success" onClick={avviaGioco2} size="lg">Nuove domande</Button>
