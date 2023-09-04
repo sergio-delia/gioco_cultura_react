@@ -71,12 +71,13 @@ const popolaDomande = (categoria) => {
     toggleFlipAll()
 
     const categorieAttive = Object.keys(categorie).filter((categoria) => categorie[categoria] === true);
-    console.log(categorieAttive);
+    
     if(categorieAttive.length != 4){
-      toast.error('Seleziona 4 categorie per iniziare il gioco')
+      toast.error("Seleziona 4 categorie per iniziare il gioco", {
+        position: "bottom-center",
+      });            
       return;
     }
-    console.log(categorieAttive);
 
     const domandeAttive = {}
       categorieAttive.map((categoria) => {
@@ -84,7 +85,6 @@ const popolaDomande = (categoria) => {
       })
 
       setlistaDomande2(domandeAttive)
-/* TRASFORMARE ARRAY IN UN OGGETTO COME E STATO FINORA */
      /* console.log(domandeAttive);
       return;
 
@@ -226,9 +226,9 @@ const [categorie, setCategorie] = useState({
 
   return (
     <>
-      <Container>
-        <Punteggio />
+      <Container className="mb-3">
         <Categorie categorie={categorie} setCategorie={setCategorie} />
+        <Punteggio />
 
         <div className="d-grid gap-2">
         <Button className="mb-3 mt-5" variant="success" onClick={avviaGioco2} size="lg">Nuove domande</Button>

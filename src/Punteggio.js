@@ -21,6 +21,7 @@ function Punteggio() {
 
   return (
     <Container className="mt-3">
+           <h2 className="mt-5 mb-3" style={{textAlign:'center'}}>Punteggio</h2>
         <ListGroup style={{textAlign:'center'}}>
             {giocatori.map((giocatore) => (
                 <ListGroup.Item key={giocatore.id}>
