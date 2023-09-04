@@ -13,7 +13,7 @@ function AllAnswerModal({domandeModal, show, setShow}) {
     <>
     <Container>
 
-      <Row>
+      <Row className="justify-content-center">
 
           <Button style={{width:'auto'}} disabled={domandeModal.length < 1} variant="secondary" onClick={handleShow}>
         Scopri le risposte delle domande sparite

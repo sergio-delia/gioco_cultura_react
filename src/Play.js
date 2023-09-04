@@ -3,7 +3,7 @@ import { useGiocatori } from "./GiocatoriContext";
 import { useNavigate } from "react-router-dom";
 import Punteggio from "./Punteggio";
 import { sport } from "./domande/sport";
-import { Button, Col, Container, ProgressBar, Row, Spinner } from "react-bootstrap";
+import { Accordion, Button, Col, Container, ProgressBar, Row } from "react-bootstrap";
 import FlippingCard from "./FlippingCard";
 import { cinema } from "./domande/cinema";
 import { arte } from "./domande/arte";
@@ -226,17 +226,30 @@ const [categorie, setCategorie] = useState({
 
   return (
     <>
-      <Container className="mb-3">
-        <Categorie categorie={categorie} setCategorie={setCategorie} />
+      <Container className="mb-3 mt-3">
+
+
+      <Row>
+        <Accordion defaultActiveKey="0">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Seleziona categorie</Accordion.Header>
+        <Accordion.Collapse eventKey="0">
+          <Accordion.Body>
+            <Categorie categorie={categorie} setCategorie={setCategorie} />
+          </Accordion.Body>
+        </Accordion.Collapse>
+        </Accordion.Item>
+      </Accordion>
+    </Row>
+        {/* <Categorie categorie={categorie} setCategorie={setCategorie} /> */}
         <Punteggio />
 
         <div className="d-grid gap-2">
         <Button className="mb-3 mt-5" variant="success" onClick={avviaGioco2} size="lg">Nuove domande</Button>
         </div>
 
-
         {listaDomande2 ? 
-        <Row>
+        <Row className="justify-content-center">
         {Object.keys(listaDomande2).map(domanda => 
           <Col className="mb-3" xs={6} sm={6} md={3}><FlippingCard flipAll={flipAll} frontContent={listaDomande2[domanda].domanda ? listaDomande2[domanda].domanda: ''} backContent={listaDomande2[domanda].risposta ? listaDomande2[domanda].risposta : ''} /></Col>
           )}
@@ -252,8 +265,8 @@ const [categorie, setCategorie] = useState({
         : <Col></Col>
         }
         <ProgressBar max={10} now={progress} label={`${progress}`} />
-        
-        <Button disabled={numDomandeRimanenti < 2 || isRunning} variant="primary" className="mt-3 mb-3 me-1" onClick={startProgressBar}>
+      <div style={{textAlign:'center'}}>
+      <Button disabled={numDomandeRimanenti < 2 || isRunning} variant="primary" className="mt-3 mb-3 me-1" onClick={startProgressBar}>
         Start
       </Button>
       <Button variant="danger" className="mt-3 mb-3 ms-1" onClick={stopProgressBar} disabled={!isRunning}>
@@ -261,6 +274,7 @@ const [categorie, setCategorie] = useState({
       </Button>
         
         <AllAnswerModal show={show} setShow={setShow} domandeModal={domandeModal} />
+        </div>  
       </Container>
     </>
   );
